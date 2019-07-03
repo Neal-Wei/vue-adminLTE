@@ -1,45 +1,13 @@
 <template>
-    <el-container style="height:100%;">
-        <el-scrollbar style="overflow:hidden;height:100%;background-color:rgb(80, 93, 107);">
-            <el-aside width="200" style="height:inherit;">
-                <!-- <nav-menu :open="isCollapse"/> -->
-                <el-menu 
-                    router
-                    background-color="#505d6b"
-                    text-color="#eee"
-                    active-text-color="#fff"
-                    :default-active="$route.path"
-                    class="el-menu-vertical-demo"
-                    :collapse="isCollapse"
-                    >
-                    <el-menu-item index="/home">
-                        <i class="el-icon-s-home"></i>
-                        <span slot="title">首页</span>
-                    </el-menu-item>
-                    <el-submenu index="2">
-                        <template slot="title">
-                            <i class="el-icon-message"></i>
-                            <span slot="title">会员管理</span>
-                        </template>
-                        <el-menu-item index="/manage/memberintegral">会员积分</el-menu-item>
-                        <el-menu-item index="/manage/memberblacklist">会员黑名单</el-menu-item>
-                    </el-submenu>
-                    <el-submenu index="3">
-                        <template slot="title">
-                            <i class="el-icon-s-promotion"></i>
-                            <span slot="title">优惠券管理</span>
-                        </template>
-                        <el-menu-item>优惠券{{isCollapse}}</el-menu-item>
-                        <el-menu-item>已发放优惠券</el-menu-item>
-                    </el-submenu>
-                </el-menu>
-            </el-aside>
+    <el-container>
+        <el-scrollbar>
+            <nav-menu :open="isCollapse"></nav-menu>
         </el-scrollbar>
         <el-container>
             <el-header>
-                <el-col :span="6" style="font-size:20px;">
+                <el-col :span="6">
                     <div class="tools">
-				    	<i class="el-icon-s-fold" @click.prevent="collapse"></i>
+				    	<i :class="isCollapse? 'el-icon-s-unfold' : 'el-icon-s-fold'" @click.prevent="fold"></i>
 				    </div>
                 </el-col>
                 <el-col :span="18" style="text-align:right;">
@@ -56,7 +24,7 @@
             </el-header>
             <el-main>
                 <div class="main-container">
-                    <transition name="fade" mode="out-in" appear>
+                    <transition name="fade" mode="out-in">
                         <keep-alive>
                             <router-view></router-view>
                         </keep-alive>
@@ -80,7 +48,7 @@ export default {
         NavMenu
     },
     methods:{
-        collapse:function(){
+        fold:function(){
             this.isCollapse = !this.isCollapse;
         }
         
@@ -89,33 +57,36 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
-.el-scrollbar .el-scrollbar__wrap{overflow-x: hidden;}
-.el-scrollbar .el-scrollbar__bar .el-scrollbar__thumb{background-color: transparent;}
-.el-header {
-    background-color:rgba($color: #e56048, $alpha:0.5);
-    color: #333;
-    line-height: 60px;
-    .el-dropdown{
-        display: inline;
-        cursor: pointer;
+<style lang="scss">
+.el-container{
+    height: 100%;
+    .el-scrollbar{
+        height:100%;
+        background-color:rgb(80, 93, 107);
+        .el-scrollbar__wrap{
+            overflow-y: scroll!important;
+            overflow-x: hidden!important;
+        }
+    }
+    .el-header {
+        background-color:rgba($color: #e56048, $alpha:0.5);
+        color: #333;
+        line-height: 60px;
+        .tools i{
+            cursor: pointer;
+            font-size: 22px;
+        }
+        .el-dropdown{
+            display: inline;
+            cursor: pointer;
+        }
+    }
+    .el-main{
+        .main-container{
+            border-radius: 4px;
+            padding: 15px;
+            background-color: #fff;
+        }
     }
 }
-.el-menu{
-    border: none;
-}
-.el-aside{
-    overflow: hidden
-}
-.el-main{
-    .main-container{
-        border-radius: 4px;
-        padding: 15px;
-        background-color: #fff;
-    }
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-  }
 </style>
