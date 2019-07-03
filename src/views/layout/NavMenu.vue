@@ -5,6 +5,8 @@
     text-color="#eee"
     active-text-color="#fff"
     :default-active="$route.path"
+    class="el-menu-vertical-demo"
+    :collapse="open"
     >
      <el-menu-item index="/home">
         <i class="el-icon-menu"></i>
@@ -23,11 +25,20 @@
             <i class="el-icon-s-promotion"></i>
             <span slot="title">优惠券管理</span>
           </template>
-          <el-menu-item>优惠券</el-menu-item>
+          <el-menu-item>优惠券{{isCollapse}}</el-menu-item>
           <el-menu-item>已发放优惠券</el-menu-item>
       </el-submenu>
   </el-menu>
 </template>
+
+<script>
+export default {
+  props:['open'],
+  data(){
+    return{}
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .el-menu{
@@ -36,7 +47,10 @@
   .el-menu-item.is-active{
     background-color: rgb(37, 97, 207)!important;
   }
-  
+   .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
 }
 </style>
 
