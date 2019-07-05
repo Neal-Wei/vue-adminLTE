@@ -69,7 +69,7 @@ export default {
         }
     }
     .el-header {
-        background-color:rgba($color: #e56048, $alpha:0.5);
+        background-color:#89c6cd;
         color: #333;
         line-height: 60px;
         .tools i{

@@ -49,25 +49,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.el-scrollbar__wrap{
-  // overflow: auto!important;
-}
   .el-aside{
     overflow: hidden;
+    .el-menu{
+      border: none;
+      .el-menu-item.is-active{
+        background-color: #89c6cd!important;
+      }
+      &.el-menu-vertical-demo:not(.el-menu--collapse) {
+          width: 200px;
+          min-height: 400px;
+      }
+    }
   }
 
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
-    min-height: 400px;
-  }
-.el-menu{
-  // overflow-x: hidden;
-  border: none;
-  .el-menu-item.is-active{
-    background-color: rgb(37, 97, 207)!important;
-  }
-
-}
 </style>
 
 

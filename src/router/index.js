@@ -19,7 +19,8 @@ export default new Router({
       children:[{
         path: 'home',
         name: 'home',
-        component:() => import('../views/home')
+        component:() => import('../views/home'),
+        meta: { title: '首页'}
       }],
     },
     {
@@ -30,12 +31,14 @@ export default new Router({
         {
           path: 'memberintegral',
           name: 'memberintegral',
-          component:() => import('../views/memberManage/memberintegral')
+          component:() => import('../views/memberManage/memberintegral'),
+          meta:{title:'会员管理'}
         },
         {
           path: 'memberblacklist',
           name: 'memberblacklist',
-          component:() => import('../views/memberManage/memberblacklist')
+          component:() => import('../views/memberManage/memberblacklist'),
+          meta:{title:'会员黑名单'}
         }
       ],
     },
